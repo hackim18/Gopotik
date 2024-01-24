@@ -1,1 +1,3 @@
 # Gopotik
+
+text amanda wahyu
