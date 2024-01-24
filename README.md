@@ -1,3 +1,9 @@
 # Gopotik
 
-text amanda wahyu
+
+=======
+Test dari raihan
+Test dari hakim
+Test dari carlos
+
+Test dari wahyu
