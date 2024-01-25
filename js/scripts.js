@@ -36,19 +36,23 @@ function cardProduk(targetId, searchTerm = "") {
             let cardElement = document.createElement('div');
             cardElement.className = 'card h-100';
             cardElement.innerHTML = `
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
-                <img class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <h5 class="fw-bolder">${namaProduk}</h5>
-                        <span class="text-muted text-decoration-line-through">${diskon}</span>
-                        <span>Rp. ${harga}</span>
-                    </div>
+            
+            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
+            <img class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
+            <div class="card-body p-4">
+                <div class="text-center">
+                    <h5 class="fw-bolder">${namaProduk}</h5>
+                    <span class="text-muted text-decoration-line-through">${diskon}</span>
+                    <span>Rp. ${harga}</span>
                 </div>
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="buttonOrder('${namaProduk}')">Order</a></div>
+            </div>
+            <div class="card-footer pt-0 border-top-0 bg-transparent" style="padding-left: 0; padding-right: 0;">
+                <div class="text-center">
+                    <a class="btn btn-outline-dark mt-auto" onclick="buttonOrder('${namaProduk}')" style="width: 100%; text-align: center; background-color: rgb(32, 94, 130); color: white; border: 0; font-family: 'Poppins', sans-serif; margin-bottom: 0;">Order</a>
                 </div>
+            </div>
             `;
+            
 
             colElement.appendChild(cardElement);
             var targetElements = document.getElementById(targetId);
