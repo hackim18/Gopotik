@@ -37,13 +37,13 @@ function cardProduk(targetId, searchTerm = "") {
             cardElement.className = 'card h-100';
             cardElement.innerHTML = `
             
-            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
-            <img class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
+            <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem; background-color: green;" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
+            <img  class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
             <div class="card-body p-4">
                 <div class="text-center">
-                    <h5 class="fw-bolder">${namaProduk}</h5>
+                    <h5 class="fw-bolder" style="color: black; font-family: montserrat;">${namaProduk}</h5>
                     <span class="text-muted text-decoration-line-through">${diskon}</span>
-                    <span>Rp. ${harga}</span>
+                    <span style="color: rgb(0, 164, 0); font-family: 'Oswald', sans-serif; font-weight: bold;">Rp. ${harga}</span>
                 </div>
             </div>
             <div class="card-footer pt-0 border-top-0 bg-transparent" style="padding-left: 0; padding-right: 0;">
@@ -105,10 +105,17 @@ function buttonOrder(nama) {
     }
     if (stok < 1) {
         idStock.innerText = `Produk Habis`;
+        idStock.style.backgroundColor = "red";
         return "Produk Habis";
     }
     else {
         idStock.innerText = `Sisa Stok ${stok}`;
+        idStock.style.backgroundColor = "green";
+    }
+
+    if (idStock.style.backgroundColor === "red") {
+        idStock.style.backgroundColor = "green";
+
     }
 
      // Tambahkan produk ke HTML keranjang belanja
@@ -175,6 +182,11 @@ function removeProduct(productId) {
         // Perbarui tampilan sisa stok
         let stockElement = document.getElementById(`stock-${productId}`);
         stockElement.textContent = `Sisa Stok ${database[i].sisaStock}`;
+
+        if (database[i].sisaStock > 0) {
+            stockElement.style.backgroundColor = "green";
+        }
+
 
         break;
     }
