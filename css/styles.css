@@ -105,6 +105,10 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+#cartMenu {
+  z-index: 1000;
+}
+
 hr {
   margin: 1rem 0;
   color: inherit;
