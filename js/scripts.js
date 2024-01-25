@@ -125,6 +125,11 @@ function buttonOrder(nama) {
     // Perbarui jumlah item di keranjang
     updateCartCount();
 
+        
+    // Perbarui tampilan sisa stok
+    let stockElement = document.getElementById(`stock-${namaProduk}`);
+    stockElement.textContent = `Sisa Stok ${stok}`;
+
      return {namaProduk, harga, stok};
  }
  
@@ -156,6 +161,22 @@ function showCheckoutPopup() {
 function removeProduct(productId) {
     var cartItem = document.querySelector(`#cartItemList [data-product-id="${productId}"]`);
     cartItem.remove();
+
+    
+ // Cari produk dalam database dan tambahkan stoknya
+ for (let i = 0; i < database.length; i++) {
+    if (database[i].namaProduk === productId) {
+        database[i].sisaStock++;
+
+        // Perbarui tampilan sisa stok
+        let stockElement = document.getElementById(`stock-${productId}`);
+        stockElement.textContent = `Sisa Stok ${database[i].sisaStock}`;
+
+        break;
+    }
+}
+
+    // Perbarui jumlah item di keranjang dan total harga
     updateTotal();
     updateCartCount();
 }
