@@ -9,49 +9,69 @@ let database = [
     {namaProduk: "Loperamide", harga: 30_000, diskon: 0/100, sisaStock: 10}
 ];
 
-function cardProduk(targetId) {
-    let namaProduk = "";
-    let harga = 0;
-    let stok = 0;
-    let diskon = 0;
-    for (let i = 0; i < database.length; i++) {
-        namaProduk = database[i].namaProduk;
-        harga = database[i].harga - (database[i].harga * database[i].diskon);
-        stok = database[i].sisaStock;
-        diskon = database[i].harga * database[i].diskon + harga;
-        if (diskon === harga) {
-            diskon = "";
-        }
-        else {
-            diskon = String("Rp. " + diskon);
-        }
-        console.log(namaProduk, harga, stok);
-        let colElement = document.createElement('div');
-        colElement.className = 'col mb-5';
-        colElement.id = `card-${namaProduk}`;
-        let cardElement = document.createElement('div');
-        cardElement.className = 'card h-100';
-        cardElement.innerHTML = `
-            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
-            <img class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
-            <div class="card-body p-4">
-                <div class="text-center">
-                    <h5 class="fw-bolder">${namaProduk}</h5>
-                    <span class="text-muted text-decoration-line-through">${diskon}</span>
-                    <span>Rp. ${harga}</span>
+function cardProduk(targetId, searchTerm = "") {
+        let lowerCaseSearchTerm = searchTerm.toLowerCase();
+        let targetElement = document.getElementById(targetId);
+        targetElement.innerHTML = "";
+        let namaProduk = "";
+        let harga = 0;
+        let stok = 0;
+        let diskon = 0;
+        for (let i = 0; i < database.length; i++) {
+            namaProduk = database[i].namaProduk;
+            harga = database[i].harga - (database[i].harga * database[i].diskon);
+            stok = database[i].sisaStock;
+            diskon = database[i].harga * database[i].diskon + harga;
+        if (lowerCaseSearchTerm === "" || namaProduk.toLowerCase().includes(lowerCaseSearchTerm)) {
+            if (diskon === harga) {
+                diskon = "";
+            }
+            else {
+                diskon = String("Rp. " + diskon);
+            }
+            console.log(namaProduk, harga, stok);
+            let colElement = document.createElement('div');
+            colElement.className = 'col mb-5';
+            colElement.id = `card-${namaProduk}`;
+            let cardElement = document.createElement('div');
+            cardElement.className = 'card h-100';
+            cardElement.innerHTML = `
+                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
+                <img class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <h5 class="fw-bolder">${namaProduk}</h5>
+                        <span class="text-muted text-decoration-line-through">${diskon}</span>
+                        <span>Rp. ${harga}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="buttonOrder('${namaProduk}')">Order</a></div>
-            </div>
-        `;
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="buttonOrder('${namaProduk}')">Order</a></div>
+                </div>
+            `;
 
-        colElement.appendChild(cardElement);
-        var targetElement = document.getElementById(targetId);
-        targetElement.appendChild(colElement);
+            colElement.appendChild(cardElement);
+            var targetElements = document.getElementById(targetId);
+            targetElements.appendChild(colElement);
+        }
     }
 }
-cardProduk("card-parent");
+
+    // Fungsi searchProduct
+    function searchProduct() {
+        let searchTerm = document.getElementById("searchInput").value;
+        cardProduk("card-parent", searchTerm);
+    }
+    
+    // Fungsi searchProduct dengan menekan Enter
+    document.getElementById("searchInput").addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            searchProduct();
+        }
+    });
+
+    // Panggil fungsi cardProduk tanpa parameter search term
+    cardProduk("card-parent");
 
 function buttonOrder(nama) {
     let namaProduk = "";
@@ -130,8 +150,8 @@ function sortProductsByPrice(order) {
     var cardParent = document.getElementById("card-parent");
     var products = Array.from(cardParent.children);
     products.sort(function (a, b) {
-        var priceA = parseFloat(a.querySelector('.product-price').innerText.replace('Rp', '').replace('.', ''));
-        var priceB = parseFloat(b.querySelector('.product-price').innerText.replace('Rp', '').replace('.', ''));
+        var priceA = parseFloat(a.querySelector('.text-center span:last-child').innerText.replace('Rp', '').replace('.', ''));
+        var priceB = parseFloat(b.querySelector('.text-center span:last-child').innerText.replace('Rp', '').replace('.', ''));
         
         if (order === 'asc') {
             return priceA - priceB;
