@@ -73,6 +73,15 @@ function cardProduk(targetId, searchTerm = "") {
     // Panggil fungsi cardProduk tanpa parameter search term
     cardProduk("card-parent");
 
+
+
+function updateCartCount() {
+    let cartItems = document.querySelectorAll('#cartItemList .list-group-item');
+    let cartItemCount = document.getElementById('cartItemCount');
+    cartItemCount.textContent = cartItems.length;
+}
+
+
 function buttonOrder(nama) {
     let namaProduk = "";
     let harga = 0;
@@ -113,6 +122,9 @@ function buttonOrder(nama) {
      cartItemList.appendChild(cartItem);
      updateTotal();
 
+    // Perbarui jumlah item di keranjang
+    updateCartCount();
+
      return {namaProduk, harga, stok};
  }
  
@@ -145,6 +157,7 @@ function removeProduct(productId) {
     var cartItem = document.querySelector(`#cartItemList [data-product-id="${productId}"]`);
     cartItem.remove();
     updateTotal();
+    updateCartCount();
 }
 
 function updateTotal() {
@@ -159,6 +172,8 @@ function updateTotal() {
     let totalElement = document.getElementById('totalHarga');
     totalElement.textContent = 'Total: Rp' + totalHarga;
 }
+
+
 function login() {
 alert("Login berhasil!");
 $('#loginModal').modal('hide');
