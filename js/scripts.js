@@ -1,7 +1,12 @@
 let database = [
-    {namaProduk: "Paracetamol", harga: 50_000, diskon: 20/100, sisaStock: 11},
-    {namaProduk: "Bodrex", harga: 100_000, diskon: 10/100, sisaStock: 4},
-    {namaProduk: "Panadol", harga: 100_000, diskon: 0/100, sisaStock: 200}
+    {namaProduk: "Cetrizine", harga: 20_000, diskon: 20/100, sisaStock: 11},
+    {namaProduk: "Bodrex", harga: 25_000, diskon: 10/100, sisaStock: 40},
+    {namaProduk: "Panadol", harga: 30_000, diskon: 0/100, sisaStock: 200},
+    {namaProduk: "Actifed", harga: 40_000, diskon: 10/100, sisaStock: 60},
+    {namaProduk: "Metformin", harga: 45_000, diskon: 5/100, sisaStock: 90},
+    {namaProduk: "Antimo", harga: 55_000, diskon: 10/100, sisaStock: 130},
+    {namaProduk: "Rhinos", harga: 150_000, diskon: 20/100, sisaStock: 30},
+    {namaProduk: "Loperamide", harga: 30_000, diskon: 0/100, sisaStock: 10}
 ];
 
 function cardProduk(targetId) {
