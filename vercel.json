@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      { "source": "/path1", "destination": "/path1/register.html" },
+      { "source": "/path2", "destination": "/path2/login.html" },
+      { "source": "/path3", "destination": "/path3/index.html" }
+    ]
+  }
+  
