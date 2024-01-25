@@ -97,8 +97,26 @@ function buttonOrder(nama) {
     else {
         idStock.innerText = `Sisa Stok ${stok}`;
     }
-    return{namaProduk, harga, stok};
-}
+
+     // Tambahkan produk ke HTML keranjang belanja
+     let cartItemList = document.getElementById('cartItemList');
+     let cartItem = document.createElement('div');
+     cartItem.className = 'list-group-item';
+     cartItem.dataset.productId = namaProduk;  // Gunakan nama produk sebagai ID
+     cartItem.innerHTML = `
+         <div class="d-flex justify-content-between">
+             <span>${namaProduk}</span>
+             <span>Rp${harga}</span>
+             <button class="btn btn-danger btn-sm" onclick="removeProduct('${namaProduk}')">Hapus</button>
+         </div>
+     `;
+     cartItemList.appendChild(cartItem);
+     updateTotal();
+
+     return {namaProduk, harga, stok};
+ }
+ 
+
 
 function kekeranjang() {
     let obj = buttonOrder("Paracetamol");
@@ -130,8 +148,16 @@ function removeProduct(productId) {
 }
 
 function updateTotal() {
-    var totalElement = document.querySelector('#cartMenu strong');
-    totalElement.textContent = `Total: Rp${totalAmount}`;
+    let totalHarga = 0;
+    let cartItems = document.querySelectorAll('#cartItemList .list-group-item');
+    cartItems.forEach(function(cartItem) {
+        let hargaProduk = parseFloat(cartItem.querySelector('span:nth-child(2)').textContent.replace('Rp', ''));
+        totalHarga += hargaProduk;
+    });
+
+    // Perbarui tampilan total harga
+    let totalElement = document.getElementById('totalHarga');
+    totalElement.textContent = 'Total: Rp' + totalHarga;
 }
 function login() {
 alert("Login berhasil!");
