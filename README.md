@@ -1,9 +1,8 @@
-# Gopotik
+# GoPotik
 
+GoPotik merupakan platform tepercaya untuk menyediakan obat-obatan agar pengguna dapat membelinya secara mudah dan aman.
 
-=======
-Test dari raihan
-Test dari hakim
-Test dari carlos
+## Fitur Utama
 
-Test dari wahyu
+- Login & Register Akun
+- Fitur Pencarian & Shortir Data
