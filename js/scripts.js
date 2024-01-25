@@ -110,14 +110,19 @@ function updateCartCount() {
     cartItemCount.textContent = cartItems.length;
 }
 
+let bayar = false;
 function bayarSekarang() {
     let total = document.getElementById(`totalHarga`);
     let username = document.getElementById(`User-Name`);
-    if (total.innerText !== "Total: Rp0") {
+    if (total.innerText !== "Total: Rp0" && bayar === false) {
+        bayar = true;
         alert(`Terimakasih ${username.innerText} sudah belanja ditoko kami dengan ${total.innerText} silahkan cek emailmu untuk transfer pembayaran`);
     }
+    else if (total.innerText !== "Total: Rp0" && bayar === true) {
+        alert("Konfirmasi pembayaran kamu sebelumnya");
+    }
     else {
-        alert(`Order produk terlebih dahulu`);
+        alert(`Order produk terlebih dahulu!`);
     }
 }
 
