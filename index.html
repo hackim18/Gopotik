@@ -6,8 +6,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>GoPotik</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!--Medicine Pill Icon-->
+    <link rel="icon" type="image/x-icon" href="assets/Medicine-Pill-Icon.ico" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Bootstrap CSS -->
@@ -64,7 +64,7 @@
                     <i class="bi-person-fill me-1"></i>
                     <div id="User-Name">John</div>
                 </div>
-                <li class="nav-item"><a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#loginModal" style="display: block">Login</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#loginModal" style="display: none">Login</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#!">About</a></li> -->
                 <li class="nav-item dropdown">
                     <!-- <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a> -->
@@ -81,7 +81,7 @@
             <div class="position-relative">
                 <button class="btn btn-outline-dark" onclick="toggleCartMenu()" type="button">
                     <i class="bi-cart-fill me-1"></i>
-                    Cart
+                    Keranjang
                     <span id="cartItemCount" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </button>
 
@@ -95,7 +95,7 @@
                     <div class="mt-2">
                         <strong id="totalHarga">Total: Rp0</strong>
                     </div>
-                    <button class="btn btn-primary mt-2 btn-block" onclick="location.href='cart.html'" type="button">Checkout</button>
+                    <button class="btn btn-outline-dark mt-2 btn-block" class="btn btn-outline-dark" onclick="bayarSekarang()" type="button">Bayar Sekarang</button>
                 </div>
             </div>
         </div>
@@ -168,8 +168,8 @@
                             Urutkan Harga
                         </button>
                         <div class="dropdown-menu" aria-labelledby="sortDropdown">
-                            <a class="dropdown-item" href="#" onclick="sortProductsByPrice('asc')">Terendah ke Tertinggi</a>
-                            <a class="dropdown-item" href="#" onclick="sortProductsByPrice('desc')">Tertinggi ke Terendah</a>
+                            <a class="dropdown-item" href="#" onclick="sortProductsByPrice('asc')">Termurah</a>
+                            <a class="dropdown-item" href="#" onclick="sortProductsByPrice('desc')">Termahal</a>
                         </div>
                     </div>
                 </form>
