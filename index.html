@@ -6,7 +6,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>GoPotik</title>
-    <!--Medicine Pill Icon-->
+    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/Medicine-Pill-Icon.ico" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -24,14 +24,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap" rel="stylesheet">
 
 
     <!-- internal stylesheet -->
     <style>
+        nav {
+            box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+        }
 
         #go {
             font-family: 'Poppins', sans-serif;
             color: rgb(29, 177, 177);
+
  
         }
         #potik {
@@ -47,11 +54,18 @@
             animation: gradient-animation 18s ease infinite;
 
         }
+
+
+        #searchInput {
+            border-radius: 30px;
+            box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+
+        }
     </style>
 </head>
 <body>
 <!-- Navigation-->
-<nav  class="navbar navbar-expand-lg navbar-light bg-light">
+<nav  class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; top: 0; width: 100%; z-index: 100;">
     <div id='bgnav' class="container px-4 px-lg-5">
         <a class="navbar-brand" href="#!" ><span id="go">Go</span><span id="potik">Potik</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -161,7 +175,7 @@
             <div class="col-md-6">
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Cari produk" aria-label="Search" id="searchInput">
-                    <button class="btn btn-outline-dark" type="button" onclick="searchProduct()">Cari</button>
+                    <button  type="button" style="border: 0; background-color: transparent;" onclick="searchProduct()"><img src="./assets/search.png" style="width: 30px; height: 30px;"></button>
                     <!-- Tambahkan dropdown untuk pengurutan harga -->
                     <div class="dropdown ms-2">
                         <button class="btn btn-outline-dark dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

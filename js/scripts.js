@@ -10,18 +10,18 @@ let database = [
 ];
 
 function cardProduk(targetId, searchTerm = "") {
-        let lowerCaseSearchTerm = searchTerm.toLowerCase();
-        let targetElement = document.getElementById(targetId);
-        targetElement.innerHTML = "";
-        let namaProduk = "";
-        let harga = 0;
-        let stok = 0;
-        let diskon = 0;
-        for (let i = 0; i < database.length; i++) {
-            namaProduk = database[i].namaProduk;
-            harga = database[i].harga - (database[i].harga * database[i].diskon);
-            stok = database[i].sisaStock;
-            diskon = database[i].harga * database[i].diskon + harga;
+    let lowerCaseSearchTerm = searchTerm.toLowerCase();
+    let targetElement = document.getElementById(targetId);
+    targetElement.innerHTML = "";
+    let namaProduk = "";
+    let harga = 0;
+    let stok = 0;
+    let diskon = 0;
+    for (let i = 0; i < database.length; i++) {
+        namaProduk = database[i].namaProduk;
+        harga = database[i].harga - (database[i].harga * database[i].diskon);
+        stok = database[i].sisaStock;
+        diskon = database[i].harga * database[i].diskon + harga;
         if (lowerCaseSearchTerm === "" || namaProduk.toLowerCase().includes(lowerCaseSearchTerm)) {
             if (diskon === harga) {
                 diskon = "";
@@ -36,31 +36,60 @@ function cardProduk(targetId, searchTerm = "") {
             let cardElement = document.createElement('div');
             cardElement.className = 'card h-100';
             cardElement.innerHTML = `
-                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="stock-${namaProduk}">Sisa Stok ${stok}</div>
-                <img class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <h5 class="fw-bolder">${namaProduk}</h5>
-                        <span class="text-muted text-decoration-line-through">${diskon}</span>
-                        <span>Rp. ${harga}</span>
-                    </div>
+            <div class="badge text-white position-absolute" style="top: 0.5rem; right: 0.5rem; background-color: green; " id="stock-${namaProduk}">Sisa Stok ${stok}</div>
+            <img  class="card-img-top" src="img/${namaProduk}.jpg" alt="..." />
+            <div class="card-body p-4" style="box-shadow: 5px 5px 30px rgba(0,0,0,.2);">
+                <div class="text-center">
+                    <h5 class="fw-bolder" style="color: black; font-family: montserrat;">${namaProduk}</h5>
+                    <span class="text-muted text-decoration-line-through">${diskon}</span>
+                    <span style="color: rgb(0, 164, 0); font-family: 'Oswald', sans-serif; font-weight: bold;">Rp. ${harga}</span>
                 </div>
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" onclick="buttonOrder('${namaProduk}')">Order</a></div>
+            </div>
+            <div class="card-footer pt-0 border-top-0 bg-transparent" style="padding-left: 0; padding-right: 0;">
+                <div class="text-center">
+                    <a id="orderButton-${namaProduk}"  class="btn btn-outline-dark mt-auto" onclick="buttonOrder('${namaProduk}')" style="width: 100%; text-align: center; background-color: rgb(32, 94, 130); color: white; border: 0; font-family: 'Poppins', sans-serif; margin-bottom: 0;">Order</a>
                 </div>
+            </div>
             `;
-
             colElement.appendChild(cardElement);
             var targetElements = document.getElementById(targetId);
             targetElements.appendChild(colElement);
+
+            // Tambahkan event listener untuk hover
+            document.getElementById(`orderButton-${namaProduk}`).addEventListener("mouseover", function() {
+                this.style.backgroundColor = "green";
+            });
+            document.getElementById(`orderButton-${namaProduk}`).addEventListener("mouseout", function() {
+                this.style.backgroundColor = "rgb(32, 94, 130)";
+            });
         }
     }
 }
+
+
 
     // Fungsi searchProduct
     function searchProduct() {
         let searchTerm = document.getElementById("searchInput").value;
         cardProduk("card-parent", searchTerm);
+
+        // ubah sumber gambar saat tombol di klik
+        let searchButtonImage = document.querySelector('.d-flex button img');
+        searchButtonImage.src = './assets/searchSelected.png';
+
+        // Dapatkan elemen tombol
+        let searchButton = document.querySelector('.d-flex button');
+
+
+        // Tambahkan event listener untuk mouseout
+
+        searchButton.addEventListener('mouseout', function() {
+    // Ubah sumber gambar kembali ke gambar asli
+    let searchButtonImage = document.querySelector('.d-flex button img');
+    searchButtonImage.src = './assets/search.png';  // Ganti dengan sumber gambar asli
+});
+
+        
     }
     
     // Fungsi searchProduct dengan menekan Enter
@@ -111,11 +140,18 @@ function buttonOrder(nama) {
     }
     if (stok < 1) {
         idStock.innerText = `Produk Habis`;
+        idStock.style.backgroundColor = "red";
         alert("Maaf stok produk ini habis!");
         return "Produk Habis";
     }
     else {
         idStock.innerText = `Sisa Stok ${stok}`;
+        idStock.style.backgroundColor = "green";
+    }
+
+    if (idStock.style.backgroundColor === "red") {
+        idStock.style.backgroundColor = "green";
+
     }
 
      // Tambahkan produk ke HTML keranjang belanja
@@ -182,6 +218,11 @@ function removeProduct(productId) {
         // Perbarui tampilan sisa stok
         let stockElement = document.getElementById(`stock-${productId}`);
         stockElement.textContent = `Sisa Stok ${database[i].sisaStock}`;
+
+        if (database[i].sisaStock > 0) {
+            stockElement.style.backgroundColor = "green";
+        }
+
 
         break;
     }
