@@ -46,7 +46,7 @@ function cardProduk(targetId, searchTerm = "") {
                     </div>
                 </div>
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="buttonOrder('${namaProduk}')">Order</a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" onclick="buttonOrder('${namaProduk}')">Order</a></div>
                 </div>
             `;
 
@@ -81,6 +81,16 @@ function updateCartCount() {
     cartItemCount.textContent = cartItems.length;
 }
 
+function bayarSekarang() {
+    let total = document.getElementById(`totalHarga`);
+    let username = document.getElementById(`User-Name`);
+    if (total.innerText !== "Total: Rp0") {
+        alert(`Terimakasih ${username.innerText} sudah belanja ditoko kami dengan ${total.innerText} silahkan cek emailmu untuk transfer pembayaran`);
+    }
+    else {
+        alert(`Order produk terlebih dahulu`);
+    }
+}
 
 function buttonOrder(nama) {
     let namaProduk = "";
@@ -101,6 +111,7 @@ function buttonOrder(nama) {
     }
     if (stok < 1) {
         idStock.innerText = `Produk Habis`;
+        alert("Maaf stok produk ini habis!");
         return "Produk Habis";
     }
     else {
@@ -135,11 +146,11 @@ function buttonOrder(nama) {
  
 
 
-function kekeranjang() {
-    let obj = buttonOrder("Paracetamol");
-    let {namaProduk, harga, stok} = obj;
-    console.log(namaProduk, harga, stok);
-}
+// function kekeranjang() {
+//     let obj = buttonOrder("Paracetamol");
+//     let {namaProduk, harga, stok} = obj;
+//     console.log(namaProduk, harga, stok);
+// }
 
 
 //////
@@ -227,4 +238,9 @@ function sortProductsByPrice(order) {
     });
 }
 
-document.getElementById("User-Name").innerHTML = JSON.parse(localStorage.getItem("currentUser")).username
+document.getElementById("User-Name").innerHTML = JSON.parse(localStorage.getItem("currentUser")).username;
+
+
+function testConsole(){
+    
+}
