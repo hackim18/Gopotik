@@ -61,7 +61,8 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #212529;
+  /* --bs-body-color: #212529; */
+  --bs-body-color: #0cb8d6;
   --bs-body-bg: #fff;
   --bs-border-width: 1px;
   --bs-border-style: solid;
@@ -3102,7 +3103,8 @@ textarea.form-control-lg {
   --bs-btn-color: #212529;
   --bs-btn-border-color: #212529;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #212529;
+  /* --bs-btn-hover-bg: #212529; */
+  --bs-btn-hover-bg: #0cb8d6;
   --bs-btn-hover-border-color: #212529;
   --bs-btn-focus-shadow-rgb: 33, 37, 41;
   --bs-btn-active-color: #fff;
@@ -7956,6 +7958,7 @@ textarea.form-control-lg {
 
 .fw-bold {
   font-weight: 700 !important;
+  /* text-align: center !important; */
 }
 
 .fw-semibold {
@@ -8074,8 +8077,11 @@ textarea.form-control-lg {
 }
 
 .text-black {
+  /* text-align: left !important; */
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
+  /* color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important; */
+  background-color: rgba(255, 255, 255, 0.5) !important;; /* Warna latar belakang */
+  color: #212529
 }
 
 .text-white {
@@ -8161,7 +8167,8 @@ textarea.form-control-lg {
 
 .bg-dark {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  /* background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important; */
+  background-color: #0cb8d6;
 }
 
 .bg-black {
