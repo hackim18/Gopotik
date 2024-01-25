@@ -226,3 +226,5 @@ function sortProductsByPrice(order) {
         cardParent.appendChild(product);
     });
 }
+
+document.getElementById("User-Name").innerHTML = JSON.parse(localStorage.getItem("currentUser")).username
